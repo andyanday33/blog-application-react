@@ -11,16 +11,16 @@ function Home() {
     <div className='home'>
         <h2>Homepage</h2>
         {isPending && <p>Loading...</p>}
-				{error && <p>Error! Could not fetch data.</p>}
-				{articles && articles.map(article => {
-					return (
-						<div key={article.id} className="card">
-							<h3>{article.title}</h3>
-							<p>{article.author}</p>
-							<Link to={`/articles/${article.id}`}>Read More...</Link>
-						</div>
-					)
-				})}
+		{error && <p>Error! Could not fetch data.</p>}
+		{articles && articles.map(article => {
+			return (
+				<div key={article.id} className="card">
+					<h3>{article.title}</h3>
+					<p>{article.author}</p>
+					<Link to={`/articles/${article.id}`}>Read More...</Link>
+				</div>
+			)
+		})}
     </div>
   )
 }
