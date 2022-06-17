@@ -12,19 +12,19 @@ function Article() {
 
   //Redirect if path does not exist
   useEffect(() => {
-    if(!data) {
+    if(article === undefined) {
       setTimeout(() => {
         navigate('/')
       }, 2000);
-
     }
-    
-  }, [data, navigate])
+  }, [article, navigate, isLoading])
 
   return (
     <div>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error! Could not fetch data</p>}
+      {article === undefined && (<><p>Sorry, the page you requested for does not exist.</p>
+      <p>Redirecting...</p></>)}
       {article && 
         <section>
           <h2>{article.title}</h2>
