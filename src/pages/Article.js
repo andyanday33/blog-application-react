@@ -1,5 +1,5 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useFetch } from '../hooks/useFetch'
 
 function Article() {
@@ -7,8 +7,19 @@ function Article() {
   const { id  } = useParams()
   const url = `http://localhost:3000/articles?id=${id}`;
   const { data, isLoading, error } = useFetch(url)
-	
+	const navigate = useNavigate()
 	let article = restructureData(data)
+
+  //Redirect if path does not exist
+  useEffect(() => {
+    if(!data) {
+      setTimeout(() => {
+        navigate('/')
+      }, 2000);
+
+    }
+    
+  }, [data, navigate])
 
   return (
     <div>
